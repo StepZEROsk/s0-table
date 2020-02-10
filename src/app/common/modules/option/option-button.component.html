@@ -1,0 +1,17 @@
+<div
+  class="s0-option-button"
+  [class.s0-option-button--disabled]="disabled"
+  cdkOverlayOrigin
+  (click)="showOverlay()"
+>
+  <s0-icon class="s0-option-button__toggle" name="more" size="lg" [color]="disabled ? 'gray-50' : 'primary'"></s0-icon>
+</div>
+
+<ng-template #overlay>
+  <div class="s0-option-button__options" *ngIf="options">
+    <a class="s0-option-button__option-item" *ngFor="let option of options" (click)="selectOption(option)">
+      <s0-icon *ngIf="option.icon" class="s0-option-button__option-icon" [name]="option.icon.name" [color]="option.icon.color || 'gray-80'"></s0-icon>
+      <span class="s0-option-button__option-label">{{ option.label }}</span>
+    </a>
+  </div>
+</ng-template>

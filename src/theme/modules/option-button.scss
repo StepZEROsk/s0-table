@@ -1,0 +1,40 @@
+
+/** Step0 OPTION BUTTON **/
+
+.s0-option-button {
+  cursor: pointer;
+  &:not(.s0-option-button--disabled):hover svg {
+    fill: var(--s0-color-secondary);
+  }
+}
+
+.s0-option-button--disabled {
+  cursor: default;
+}
+
+.s0-option-button__options {
+  padding: var(--s0-padding-1) 0;
+  background-color: var(--s0-color-white);
+  border: 1px solid var(--s0-color-gray-6p);
+  border-radius: 5px;
+  font-size: var(--s0-font-size-2);
+}
+
+.s0-option-button__option-item {
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+  padding: var(--s0-padding-2) var(--s0-padding-6) var(--s0-padding-2) var(--s0-padding-4);
+
+  &:hover {
+    background-color: var(--s0-color-gray-3p);
+  }
+
+  &:not(:first-child)  {
+    border-top: 1px solid var(--s0-color-gray-6p);
+  }
+}
+
+.s0-option-button__option-icon {
+  margin-right: var(--s0-margin-3);
+}

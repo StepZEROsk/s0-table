@@ -1,0 +1,31 @@
+<div
+  class="s0-table"
+  [class.s0-table--head-fixed]="headerStuck"
+  #tableElement
+>
+  <s0-table-head
+    class="s0-table__head"
+    [class.s0-table__head--fixed]="headerStuck"
+    [style.width]="headerStuck ? tableElement.offsetWidth + 'px' : '100%'"
+    [columns]="columns"
+    [config]="config"
+    [disabled]="loading"
+    [loading]="loading"
+    (sort)="sortRows($event)"
+
+  ></s0-table-head>
+
+  <ng-container *ngIf="!loading">
+    <s0-table-row
+      [row]="row"
+      [clickable]="config.rowBehavior === 'detail' || config.rowBehavior === 'emit'"
+      (rowClick)="rowClick.emit($event)"
+      (optionSelect)="rowAction.emit({ action: $event, row: row })"
+      *ngFor="let row of rows"
+    ></s0-table-row>
+
+    <div class="s0-table__msg" *ngIf="!rows || rows.length < 1">{{ config.emptyMsg || 'No table data' }}</div>
+  </ng-container>
+
+  <s0-loading class="s0-table__loading" *ngIf="loading"></s0-loading>
+</div>

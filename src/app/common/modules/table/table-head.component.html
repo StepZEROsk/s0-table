@@ -1,0 +1,35 @@
+<div
+  class="s0-table-head"
+>
+  <div
+    class="s0-table-head__body"
+    [class.pr-8]="config.tableOptions || config.rowOptions"
+  >
+    <div
+      class="s0-table-head__container"
+    >
+      <div
+        [ngClass]="[
+          's0-table-cell',
+          'w-' + col.width + 'p'
+        ]"
+        [class.s0-table-cell--sort]="!loading && col.sort"
+        (click)="!loading && col.sort ? onSortClick(col) : null"
+        *ngFor="let col of columns"
+      >
+        <div class="s0-table-cell__content">{{ col.label }}</div>
+        <s0-icon
+          class="s0-table-cell__sort"
+          [class.s0-table-cell__sort--active]="sortParams && sortParams.colId === col.id"
+          size="sm"
+          [color]="sortParams && sortParams.colId === col.id ? 'primary' : 'gray-90'"
+          [name]="sortParams && sortParams.order === 'DESC' ? 'arrow-downward' : 'arrow-upward'"
+          *ngIf="!loading && col.sort"
+        ></s0-icon>
+      </div>
+    </div>
+    <div class="s0-table-head__button" *ngIf="config.tableOptions">
+      <s0-option-button [options]="config.tableOptions" [disabled]="disabled"></s0-option-button>
+    </div>
+  </div>
+</div>

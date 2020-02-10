@@ -1,0 +1,28 @@
+<div
+  class="s0-table-row"
+  [class.s0-table-row--highlighted]="highlighted"
+  [class.s0-table-row--expanded]="expanded"
+>
+  <div
+    class="s0-table-row__body"
+    [class.pr-8]="row.options"
+  >
+    <div
+      class="s0-table-row__container"
+      [class.s0-table-row__container--clickable]="clickable"
+      (click)="clickable && onRowClick()"
+    >
+      <s0-table-cell
+        [cell]="cell"
+        *ngFor="let cell of row.cells"
+      ></s0-table-cell>
+    </div>
+    <div class="s0-table-row__button" *ngIf="row.options && row.options.length > 0">
+      <s0-option-button [options]="row.options" (selected)="onOptionSelect($event)" (opened)="onOptionOpen($event)"></s0-option-button>
+    </div>
+  </div>
+
+  <div class="s0-table-row__detail" *ngIf="row.detail && expanded">
+    <ng-template [cdkPortalOutlet]="row.detail"></ng-template>
+  </div>
+</div>

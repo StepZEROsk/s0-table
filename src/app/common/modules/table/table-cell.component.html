@@ -1,0 +1,18 @@
+<div
+  class="s0-table-cell__content"
+  [class.s0-table-cell__content--tooltip]="cell.tooltip"
+  (mouseenter)="cell.tooltip && showTooltip()"
+  cdkOverlayOrigin
+>
+  <ng-template [cdkPortalOutlet]="cell.content" *ngIf="cell.contentType === 'PORTAL'; else text"></ng-template>
+  <ng-template #text>
+      <s0-icon class="mr-2" [color]="cell.icon.color || 'gray-50'" [size]="cell.icon.size || 'xs'" [name]="cell.icon.name" *ngIf="cell.icon"></s0-icon>
+      {{ cell.content ? cell.content : '-' }}
+  </ng-template>
+</div>
+
+<ng-template #tooltipTemplate *ngIf="cell.tooltip">
+  <s0-tooltip [size]="cell.tooltip.size">
+    <ng-template [cdkPortalOutlet]="tooltipPortal"></ng-template>
+  </s0-tooltip>
+</ng-template>
